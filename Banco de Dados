@@ -1,1 +1,19 @@
+create database receita;
+use receita;
 
+create table usuarios(
+id int auto_increment,
+nome varchar(50) primary key not null,
+cpf varchar(12),
+sexo enum('M','F'),
+endereco varchar(80),
+telefone varchar(11),
+data_nascimento date
+);
+create table receita(
+id int auto_increment primary key,
+nome_receita varchar(100) not null,
+igredientes text,
+modo_preparo text,
+tempo_preparo int,
+categoria varchar(50);
