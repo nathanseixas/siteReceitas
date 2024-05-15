@@ -7,7 +7,7 @@ const connection = createConnection({
     user: process.env.DB_USER,
     password: process.env.DB_PASS,
     database: process.env.DB_NAME,
-    port: 3000 //3306 padrao do mysql
+    port: 3306
 });
 
 connection.connect((error)=> {

@@ -2,8 +2,8 @@ create database receita;
 use receita;
 
 create table usuarios(
-id int auto_increment,
-nome varchar(50) primary key not null,
+id int auto_increment primary key ,
+nome varchar(50) not null,
 cpf varchar(12),
 sexo enum('M','F'),
 endereco varchar(80),
@@ -19,6 +19,6 @@ tempo_preparo int,
 categoria varchar(50)
 );
 alter table receita 
-add column id_usuario int, add constraint fk_usuario foreign key (id_usuario) references usuarios(nome);
+add column id_usuario int, add constraint fk_usuario foreign key (id_usuario) references usuarios(id);
 
 alter table receita change column igredientes ingredientes text;
