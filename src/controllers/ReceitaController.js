@@ -6,12 +6,8 @@ import receitaService from "../services/ReceitaServices.js";
 
         let receita = await receitaService.buscarTodas();
 
-
-        for(let i in receita){
-            json.result.push({
-                codigo: receita[i].codigo,
-                descrição: receita[i].modelo
-            });
+        if(receita){
+            json.result = receita;
         }
 
         return res.json(json);
@@ -20,7 +16,7 @@ import receitaService from "../services/ReceitaServices.js";
     export async function buscarUma(req, res) {
         let json = {error: '', result:{}};
         
-        let codigo = rq.params.codigo;
+        let codigo = req.params.codigo;
         let receita = await receitaService.buscarUma(codigo);
 
         if(receita){
@@ -32,16 +28,12 @@ import receitaService from "../services/ReceitaServices.js";
     export async function inserir(req, res) {
         let json = {error: '', result:{}};
         
-        let nome = rq.body.nome;
-        let categoria = rq.body.categoria;
+        const {nome_receita, categoria, ingredientes, modo_preparo, tempo_preparo, id_usuario} = req.body;
         
-        if(nome && categoria ){
-            let receita = await receitaService.inserir(codigo);
-            json.result = {
-                codigo: ReceitaCodigo,
-                nome,
-                categoria
-            };
+        if(nome_receita && categoria && ingredientes && modo_preparo && tempo_preparo && id_usuario ){
+            let receita = await receitaService.inserir(nome_receita, categoria, ingredientes, modo_preparo, tempo_preparo, id_usuario);
+            json.result = receita 
+                
         }else {
             json.error = 'Campos nao encontrado'
         }
@@ -67,4 +59,20 @@ import receitaService from "../services/ReceitaServices.js";
         }
         return res.json(json);
     }
+
+    export async function receita_usuario(req, res) {
+        let json = {error: '', result: [] };
+
+        let codigo = req.params.codigo;
+
+        let receita = await receitaService.receita_usuario(codigo);
+
+        if(receita){
+            json.result = receita;
+        }
+
+        return res.json(json);
+    }
+
+
 
