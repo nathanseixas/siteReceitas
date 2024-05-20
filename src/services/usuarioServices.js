@@ -14,7 +14,21 @@ function buscarUm(nome) {
     });
 }
 
+function criarUsuarios(nome, cpf, sexo, endereco, telefone, data_nascimento) {
+    return new Promise((aceito, rejeitado)=> {
+        connection.query('INSERT INTO usuarios (nome, cpf, sexo, endereco, telefone, data_nascimento) VALUES (?,?,?,?,?,?)', 
+        [nome, cpf, sexo, endereco, telefone, data_nascimento], (error, results)=>{
+            if(error) {rejeitado(error); return;}
+            aceito(results);
+
+
+    });
+    });
+
+}
+
 const usuarioServices = {
-    buscarUm
+    buscarUm,
+    criarUsuarios
 }
 export default usuarioServices;

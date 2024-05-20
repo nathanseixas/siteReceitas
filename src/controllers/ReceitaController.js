@@ -35,7 +35,7 @@ import receitaService from "../services/ReceitaServices.js";
             json.result = receita 
                 
         }else {
-            json.error = 'Campos nao encontrado'
+            json.error = 'Campo nao encontrado'
         }
         return res.json(json);
     }
@@ -73,6 +73,7 @@ import receitaService from "../services/ReceitaServices.js";
 
         return res.json(json);
     }
+
 
 
 
