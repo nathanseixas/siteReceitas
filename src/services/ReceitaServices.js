@@ -48,17 +48,15 @@ function receita_usuario(codigo) {
 }
 
 
-function alterar(codigo) {
-    return new Promise((aceito, rejeitado)=> {
-        connection.query('')
-    })
-}
-
 
 function excluir(codigo) {
     return new Promise((aceito, rejeitado)=> {
-        connection.query('')
-    })
+        connection.query('DELETE FROM receita WHERE id = ?', [codigo], (error, results)=> {
+            if(error) {rejeitado(error); return; }
+            aceito(results);
+
+        });
+    });
 }
 
 const receitaService = {
@@ -66,7 +64,6 @@ const receitaService = {
     buscarUma,
     inserir,
     receita_usuario,
-    alterar,
     excluir
 }
 export default receitaService;

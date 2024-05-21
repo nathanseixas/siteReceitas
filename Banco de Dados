@@ -4,7 +4,7 @@ use receita;
 create table usuarios(
 id int auto_increment primary key ,
 nome varchar(50) not null,
-cpf varchar(12),
+cpf varchar(11),
 sexo enum('M','F'),
 endereco varchar(80),
 telefone varchar(11),

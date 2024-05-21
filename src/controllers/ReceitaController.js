@@ -40,26 +40,6 @@ import receitaService from "../services/ReceitaServices.js";
         return res.json(json);
     }
 
-    export async function alterar(req, res) {
-        let json = {error: '', result:{}};
-
-        
-        let nome = rq.body.nome;
-        let categoria = rq.body.categoria;
-        
-        if(nome && categoria ){
-            let receita = await receitaService.inserir(codigo);
-            json.result = {
-                codigo: ReceitaCodigo,
-                nome,
-                categoria
-            };
-        }else {
-            json.error = 'Campos nao encontrado'
-        }
-        return res.json(json);
-    }
-
     export async function receita_usuario(req, res) {
         let json = {error: '', result: [] };
 
@@ -73,6 +53,26 @@ import receitaService from "../services/ReceitaServices.js";
 
         return res.json(json);
     }
+
+
+    export async function deletarReceitas(req, res) {
+        let json = {error: '', result:{}}
+
+        let codigo = req.params.codigo;
+
+        let usuarioId = res.locals.usuario;
+        let receita = await receitaService.buscarUma(codigo);
+
+        if (receita.id_usuario == usuarioId){
+            receitaService.excluir(codigo);
+            json.result = receita;
+        }else{
+            json.error = 'nao foi posssivel deletar a receita, tente novamente mais tarde!'
+        }
+        
+        return res.json(json);
+    }
+
 
 
 
