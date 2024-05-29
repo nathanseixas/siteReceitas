@@ -13,7 +13,7 @@ data_nascimento date
 create table receita(
 id int auto_increment primary key,
 nome_receita varchar(100) not null,
-igredientes text,
+ingredientes text,
 modo_preparo text,
 tempo_preparo int,
 categoria varchar(50),
