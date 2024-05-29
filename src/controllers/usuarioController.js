@@ -5,9 +5,14 @@ import usuarioServices from "../services/usuarioServices.js";
 
         const {nome, cpf, sexo, endereco, telefone, data_nascimento } = req.body;
         if(nome && cpf && sexo && endereco && telefone && data_nascimento ){
-            let usuarios = await usuarioServices.criarUsuarios(nome, cpf, sexo, endereco, telefone, data_nascimento);
-            json.result = usuarios
-                
+            let usuarioExiste = await usuarioServices.buscarUm(nome);
+            
+            if(usuarioExiste) {
+                json.error = 'usuario já cadastrado'
+            } else {
+                await usuarioServices.criarUsuarios(nome, cpf, sexo, endereco, telefone, data_nascimento);
+                json.result = {nome, cpf, sexo, endereco, telefone, data_nascimento};
+            }
         }else {
             json.error = 'Campo nao encontrado'
         }
