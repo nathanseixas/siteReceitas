@@ -7,8 +7,7 @@ import router from './routes.js';
 const server = express();
 
 server.use(urlencoded({extended: false}));
-server.use(express.json())
-server.use(cors());
+server.use(express.json({limit: '10mb'}));
 server.use('/api', router);
 
 server.listen(process.env.PORT, ()=> {
