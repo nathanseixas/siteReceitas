@@ -24,10 +24,10 @@ function buscarUma(codigo) {
         });
     });
 }
-function inserir(nome_receita, categoria, ingredientes, modo_preparo, tempo_preparo, id_usuario) {
+function inserir(nome_receita, categoria, ingredientes, modo_preparo, tempo_preparo, id_usuario, imagem) {
     return new Promise((aceito, rejeitado) => {
 
-        connection.query('INSERT INTO receita (nome_receita, categoria, ingredientes, modo_preparo, tempo_preparo, id_usuario) VALUES (?, ?, ?, ?, ?, ?)',
+        connection.query('INSERT INTO receita (nome_receita, categoria, ingredientes, modo_preparo, tempo_preparo, id_usuario,imagem) VALUES (?, ?, ?, ?, ?, ?,?)',
             [nome_receita, categoria, ingredientes, modo_preparo, tempo_preparo, id_usuario], (error, results) => {
             if (error) { rejeitado(error); return; }
             aceito(results);

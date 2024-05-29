@@ -28,10 +28,10 @@ import receitaService from "../services/ReceitaServices.js";
     export async function inserir(req, res) {
         let json = {error: '', result:{}};
         
-        const {nome_receita, categoria, ingredientes, modo_preparo, tempo_preparo, id_usuario} = req.body;
+        const {nome_receita, categoria, ingredientes, modo_preparo, tempo_preparo, id_usuario, imagem} = req.body;
         
-        if(nome_receita && categoria && ingredientes && modo_preparo && tempo_preparo && id_usuario ){
-            let receita = await receitaService.inserir(nome_receita, categoria, ingredientes, modo_preparo, tempo_preparo, id_usuario);
+        if(nome_receita && categoria && ingredientes && modo_preparo && tempo_preparo && id_usuario && imagem){
+            let receita = await receitaService.inserir(nome_receita, categoria, ingredientes, modo_preparo, tempo_preparo, id_usuario, imagem);
             json.result = receita 
                 
         }else {

@@ -16,7 +16,8 @@ nome_receita varchar(100) not null,
 igredientes text,
 modo_preparo text,
 tempo_preparo int,
-categoria varchar(50)
+categoria varchar(50),
+imagem text
 );
 alter table receita 
 add column id_usuario int, add constraint fk_usuario foreign key (id_usuario) references usuarios(id);
